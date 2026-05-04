@@ -19,12 +19,15 @@ PlaceNix is a full-stack, AI-powered web application designed to help university
 - **Lucide-React**: Clean, modern SVGs and icons.
 - **Vanilla CSS**: Custom styling utilizing modern variables and glassmorphism techniques.
 
-### Backend
+### Backend & Database
 - **Python (Flask)**: Lightweight backend API framework.
-- **Flask-SQLAlchemy**: ORM for managing the SQLite database.
+- **Flask-SQLAlchemy & SQLite**: ORM for managing the student, company, and placement database.
 - **Flask-CORS**: Cross-Origin Resource Sharing handling for API requests.
-- **Scikit-learn / Pandas / NumPy**: Machine learning dependencies for data generation and placement prediction models.
-- **PyPDF2**: For parsing uploaded resumes.
+
+### AI & Machine Learning
+- **Groq API (Llama 3)**: High-speed LLM inference for the intelligent Interview Prep Chatbot.
+- **Scikit-learn / Pandas / NumPy**: Machine learning tools for training placement probability and salary prediction models.
+- **PyPDF2**: For parsing and analyzing uploaded student resumes.
 
 ---
 
