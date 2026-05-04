@@ -1,0 +1,62 @@
+{
+  "easy": [
+    {
+      "id": "e1",
+      "type": "hr",
+      "question": "Tell me a little bit about yourself.",
+      "keywords": ["student", "degree", "passion", "skills", "projects", "interest"]
+    },
+    {
+      "id": "e2",
+      "type": "technical",
+      "question": "What is Object-Oriented Programming (OOP)?",
+      "keywords": ["class", "object", "inheritance", "polymorphism", "encapsulation", "abstraction", "paradigm"]
+    },
+    {
+      "id": "e3",
+      "type": "coding",
+      "question": "How do you find the maximum element in an array?",
+      "keywords": ["loop", "iterate", "compare", "max", "variable", "initialize"]
+    }
+  ],
+  "medium": [
+    {
+      "id": "m1",
+      "type": "hr",
+      "question": "Describe a time you faced a challenge in a project and how you overcame it.",
+      "keywords": ["challenge", "problem", "solution", "team", "communicate", "debug", "resolve"]
+    },
+    {
+      "id": "m2",
+      "type": "technical",
+      "question": "Explain the difference between a process and a thread.",
+      "keywords": ["memory", "space", "shared", "independent", "context", "switch", "execution"]
+    },
+    {
+      "id": "m3",
+      "type": "coding",
+      "question": "Explain how you would reverse a linked list.",
+      "keywords": ["pointer", "next", "previous", "current", "head", "null", "iterate", "loop"]
+    }
+  ],
+  "hard": [
+    {
+      "id": "h1",
+      "type": "hr",
+      "question": "Where do you see yourself in 5 years, and how does this role align with that?",
+      "keywords": ["growth", "leadership", "learn", "technology", "impact", "goals", "align"]
+    },
+    {
+      "id": "h2",
+      "type": "technical",
+      "question": "How does a hash table work under the hood, and how do you handle collisions?",
+      "keywords": ["hash", "function", "index", "array", "collision", "chaining", "probing", "linked"]
+    },
+    {
+      "id": "h3",
+      "type": "coding",
+      "question": "Explain the concept of Dynamic Programming and give an example of where you would use it.",
+      "keywords": ["overlapping", "subproblems", "memoization", "tabulation", "optimal", "substructure", "fibonacci", "knapsack"]
+    }
+  ]
+}
