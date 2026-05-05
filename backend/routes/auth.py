@@ -38,3 +38,30 @@ def login():
         }), 200
         
     return jsonify({"error": "Invalid email or password"}), 401
+
+import uuid
+
+@auth_bp.route('/google', methods=['POST'])
+def google_login():
+    data = request.json
+    email = data.get('email')
+    name = data.get('name', 'Google User')
+    
+    if not email:
+        return jsonify({"error": "Email is required"}), 400
+        
+    user = User.query.filter_by(email=email).first()
+    
+    # If user doesn't exist, create an account for them automatically
+    if not user:
+        user = User(email=email)
+        # Generate a random strong password since they are logging in via Google
+        random_password = str(uuid.uuid4())
+        user.set_password(random_password)
+        db.session.add(user)
+        db.session.commit()
+        
+    return jsonify({
+        "message": "Google Login successful",
+        "user": user.to_dict()
+    }), 200

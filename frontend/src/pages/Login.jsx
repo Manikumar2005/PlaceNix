@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { loginUser } from '../services/api';
+import { loginUser, googleLoginAuth } from '../services/api';
+import { auth, googleProvider } from '../services/firebase';
+import { signInWithPopup } from 'firebase/auth';
 import Logo from '../components/Logo';
 
 function Login() {
@@ -28,6 +30,28 @@ function Login() {
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.error || 'Failed to log in. Please check your credentials.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setError('');
+    setLoading(true);
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const googleUser = result.user;
+      
+      const data = await googleLoginAuth({ 
+        email: googleUser.email, 
+        name: googleUser.displayName 
+      });
+      
+      login(data.user);
+      navigate('/');
+    } catch (err) {
+      console.error(err);
+      setError('Failed to log in with Google.');
     } finally {
       setLoading(false);
     }
@@ -83,6 +107,8 @@ function Login() {
 
         <button 
           className="btn" 
+          type="button"
+          disabled={loading}
           style={{ 
             width: '100%', 
             background: 'rgba(255, 255, 255, 0.05)', 
@@ -93,7 +119,7 @@ function Login() {
             alignItems: 'center',
             gap: '10px'
           }}
-          onClick={() => alert('Google Sign-In integration requires an OAuth Client ID. We can set this up next!')}
+          onClick={handleGoogleLogin}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
