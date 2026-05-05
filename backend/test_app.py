@@ -51,6 +51,8 @@ class APITestCase(unittest.TestCase):
             "internships": "Summer Intern at Tech Corp"
         }
         res = self.client.post('/api/students', data=json.dumps(student_data), content_type='application/json')
+        if res.status_code != 201:
+            print("ERROR RESPONSE:", res.data)
         self.assertEqual(res.status_code, 201)
         data = json.loads(res.data)
         self.assertEqual(data['name'], 'John Doe')

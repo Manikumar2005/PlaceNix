@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { PredictionProvider } from './context/PredictionContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -19,13 +19,16 @@ import Signup from './pages/Signup';
 
 function AppLayout() {
   const { user } = useAuth();
+  const location = useLocation();
+  const path = location.pathname.replace(/\/$/, '');
+  const isAuthPage = path === '/login' || path === '/signup';
   
   return (
-    <div className={`app-layout ${user ? 'authenticated' : 'public'}`}>
-      {user ? <Sidebar /> : <Navbar />}
+    <div className={`app-layout ${user && !isAuthPage ? 'authenticated' : 'public'}`}>
+      {!isAuthPage && (user ? <Sidebar /> : <Navbar />)}
       
-      <div className="main-content">
-        {user && <TopBar />}
+      <div className="main-content" style={isAuthPage ? { marginLeft: 0, width: '100%' } : {}}>
+        {user && !isAuthPage && <TopBar />}
         <main className="container-fluid">
           <Routes>
             <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
